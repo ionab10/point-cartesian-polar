@@ -33,51 +33,283 @@ public class PointCPTest
    */
   public static void main(String[] args)
   {
-    PointCP pointCP;
-    PointC pointC;
-    PointP pointP;
      
+	long startTime;
+	long endTime;
+    long N = 100000000;
+
+    
+    System.out.println(String.format("Timings for %d runs (milliseconds)",N));
+    System.out.println("\t\t\t(PointCP -> PointCP)\t(Point[C|P] -> Point[C|P])\t(Point6 -> Point6)");
+    
+    startTime = System.currentTimeMillis();
+    Polar2PolarCP(N);
+    endTime = System.currentTimeMillis();
+    System.out.print("Polar to Polar:\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    Polar2PolarP(N);
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    Polar2Polar6(N);
+    endTime = System.currentTimeMillis();
+    System.out.println("\t\t\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    Polar2CartesCP(N);
+    endTime = System.currentTimeMillis();
+    System.out.print("Polar to Cartesian:\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    Polar2CartesP(N);
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    Polar2Cartes6(N);
+    endTime = System.currentTimeMillis();
+    System.out.println("\t\t\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    Cartes2PolarCP(N);
+    endTime = System.currentTimeMillis();
+    System.out.print("Cartesian to Polar:\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    Cartes2PolarC(N);
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    Cartes2Polar6(N);
+    endTime = System.currentTimeMillis();
+    System.out.println("\t\t\t\t" + (endTime - startTime));
     
     
+    startTime = System.currentTimeMillis();
+    Cartes2CartesCP(N);
+    endTime = System.currentTimeMillis();
+    System.out.print("Cartesian to Cartesian:\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    Cartes2CartesC(N);
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    Cartes2Cartes6(N);
+    endTime = System.currentTimeMillis();
+    System.out.println("\t\t\t\t" + (endTime - startTime));
+    
+    System.out.println("\n");
+    convertACoordinate(args);
 
-    /*
-    System.out.println("Cartesian-Polar Coordinates Conversion Program");
-
-    // Check if the user input coordinates from the command line
-    // If he did, create the PointCP object from these arguments.
-    // If he did not, prompt the user for them.
-    try
-    {
-      point = new PointCP(args[0].toUpperCase().charAt(0), 
-        Double.valueOf(args[1]).doubleValue(), 
-        Double.valueOf(args[2]).doubleValue());
-    }
-    catch(Exception e)
-    {
-      // If we arrive here, it is because either there were no
-      // command line arguments, or they were invalid
-      if(args.length != 0)
-        System.out.println("Invalid arguments on command line");
-
-      try
-      {
-        point = getInput();
-      }
-      catch(IOException ex)
-      {
-        System.out.println("Error getting input. Ending program.");
-        return;
-      }
-    }
-    System.out.println("\nYou entered:\n" + point);
-    point.convertStorageToCartesian();
-    System.out.println("\nAfter asking to store as Cartesian:\n" + point);
-    point.convertStorageToPolar();
-    System.out.println("\nAfter asking to store as Polar:\n" + point);
-    */
   }
  
+  /**
 
+   */
+  private static void Polar2PolarCP(long n)
+  {
+	  PointCP pointCP = new PointCP('P',Math.random(), Math.random() * 360);
+	  
+	  for (int i=0; i<n; i++) {
+		  pointCP = new PointCP('P',pointCP.getRho(), pointCP.getTheta());
+	  }
+	  
+  }
+  
+  /**
+
+   */
+  private static void Polar2CartesCP(long n)
+  {
+	  PointCP pointCP = new PointCP('P',Math.random(), Math.random() * 360);
+	  
+	  for (int i=0; i<n; i++) {
+		  pointCP = new PointCP('C',pointCP.getX(), pointCP.getY());
+	  }
+	  
+  }
+  
+  /**
+
+   */
+  private static void Cartes2CartesCP(long n)
+  {
+	  PointCP pointCP = new PointCP('C', Math.random(), Math.random());
+	  
+	  for (int i=0; i<n; i++) {
+		  pointCP = new PointCP('C',pointCP.getX(), pointCP.getY());
+	  }
+	  
+  }
+  
+  /**
+
+   */
+  private static void Cartes2PolarCP(long n)
+  {
+	  PointCP pointCP = new PointCP('C',Math.random(), Math.random());
+	  
+	  for (int i=0; i<n; i++) {
+		  pointCP = new PointCP('P',pointCP.getRho(), pointCP.getTheta());
+	  }
+	  
+  }
+  
+  /**
+
+   */
+  private static void Polar2PolarP(long n)
+  {
+	  PointP pointP = new PointP(Math.random(), Math.random() * 360);
+	  
+	  for (int i=0; i<n; i++) {
+		  pointP = new PointP(pointP.getRho(), pointP.getTheta());
+	  }
+	  
+  }
+  
+  /**
+
+   */
+  private static void Polar2CartesP(long n)
+  {
+	  PointP pointP = new PointP(Math.random(), Math.random() * 360);
+	  PointC pointC;
+	  
+	  for (int i=0; i<n; i++) {
+		  pointC = new PointC(pointP.getX(), pointP.getY());
+	  }
+	  
+  }
+  
+  
+  /**
+
+   */
+  private static void Cartes2CartesC(long n)
+  {
+	  PointC pointC = new PointC(Math.random(), Math.random());
+	  
+	  for (int i=0; i<n; i++) {
+		  pointC = new PointC(pointC.getX(), pointC.getY());
+	  }
+	  
+  }
+  
+  /**
+
+   */
+  private static void Cartes2PolarC(long n)
+  {
+	  PointP pointP;
+	  PointC pointC = new PointC(Math.random(), Math.random());
+	  
+	  for (int i=0; i<n; i++) {
+		  pointP = new PointP(pointC.getRho(), pointC.getTheta());
+	  }
+	  
+  }
+  
+  /**
+
+   */
+  private static void Polar2Polar6(long n)
+  {
+	  Point6 point6 = new Point6('P',Math.random(), Math.random() * 360);
+	  
+	  for (int i=0; i<n; i++) {
+		  point6 = new Point6('P',point6.getRho(), point6.getTheta());
+	  }
+  }
+  
+  /**
+
+   */
+  private static void Polar2Cartes6(long n)
+  {
+	  Point6 point6 = new Point6('P',Math.random(), Math.random() * 360);
+	  
+	  for (int i=0; i<n; i++) {
+		  point6 = new Point6('C',point6.getX(), point6.getY());
+	  }
+	  
+  }
+  
+  
+  /**
+
+   */
+  private static void Cartes2Cartes6(long n)
+  {
+	  Point6 point6 = new Point6('C',Math.random(), Math.random());
+	  
+	  for (int i=0; i<n; i++) {
+		  point6 = new Point6('C',point6.getX(), point6.getY());
+	  }
+	  
+  }
+  
+  /**
+
+   */
+  private static void Cartes2Polar6(long n)
+  {
+	  Point6 point6 = new Point6('C',Math.random(), Math.random());
+	  
+	  for (int i=0; i<n; i++) {
+		  point6 = new Point6('P',point6.getRho(), point6.getTheta());
+	  }
+	  
+  }
+  
+  /**
+
+   */
+  private static void convertACoordinate(String[] args)
+  {
+	    PointCP point;
+	    
+	    System.out.println("Cartesian-Polar Coordinates Conversion Program");
+
+	    // Check if the user input coordinates from the command line
+	    // If he did, create the PointCP object from these arguments.
+	    // If he did not, prompt the user for them.
+	    try
+	    {
+	      point = new PointCP(args[0].toUpperCase().charAt(0), 
+	        Double.valueOf(args[1]).doubleValue(), 
+	        Double.valueOf(args[2]).doubleValue());
+	    }
+	    catch(Exception e)
+	    {
+	      // If we arrive here, it is because either there were no
+	      // command line arguments, or they were invalid
+	      if(args.length != 0)
+	        System.out.println("Invalid arguments on command line");
+
+	      try
+	      {
+	        point = getInput();
+	      }
+	      catch(IOException ex)
+	      {
+	        System.out.println("Error getting input. Ending program.");
+	        return;
+	      }
+	    }
+	    System.out.println("\nYou entered:\n" + point);
+	    point.convertStorageToCartesian();
+	    System.out.println("\nAfter asking to store as Cartesian:\n" + point);
+	    point.convertStorageToPolar();
+	    System.out.println("\nAfter asking to store as Polar:\n" + point);
+	    
+  } 
+  
   /**
    * This method obtains input from the user and verifies that
    * it is valid.  When the input is valid, it returns a PointCP
@@ -168,4 +400,5 @@ public class PointCPTest
     //Return a new PointCP object
     return (new PointCP(coordType, a, b));
   }
+  
 }
