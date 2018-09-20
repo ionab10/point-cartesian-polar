@@ -1,32 +1,28 @@
-// This file contains material supporting section 2.9 of the textbook:
-// "Object Oriented Software Engineering" and is issued under the open-source
-// license found at www.lloseng.com 
-
 /**
  * This class contains instances of coordinates in either polar or
  * cartesian format.  It also provides the utilities to convert
  * them into the other type. It is not an optimal design, it is used
  * only to illustrate some design issues.
- *
- * @author Fran&ccedil;ois B&eacute;langer
- * @author Dr Timothy C. Lethbridge
- * @version July 2000
  */
-public class PointP implements Point6
+public class Point5
 {
   //Instance variables ************************************************
+
+  /**
+   * Contains C(artesian) or P(olar) to identify the type of
+   * coordinates that are being dealt with.
+   */
+  private char typeCoord;
   
   /**
-   * Contains the current value of X or RHO depending on the type
-   * of coordinates.
+   * Contains the current point in cartesian coordinates as type PointC
    */
-  private double Rho;
+  private PointC pointC;
   
   /**
-   * Contains the current value of Y or THETA value depending on the
-   * type of coordinates.
+   * Contains the current point in polar coordinates as type PointP
    */
-  private double Theta;
+  private PointP pointP;
 	
   
   //Constructors ******************************************************
@@ -34,10 +30,21 @@ public class PointP implements Point6
   /**
    * Constructs a coordinate object, with a type identifier.
    */
-  public PointP(double Rho, double Theta)
+  public Point5(char type, double xOrRho, double yOrTheta)
   {
-    this.Rho = Rho;
-    this.Theta = Theta;
+	  
+	  if(type == 'C') {
+		  this.pointC = new PointC(xOrRho,yOrTheta);
+		  this.pointP = new PointP(this.pointC.getRho(), this.pointC.getTheta());
+	  }
+	  else if (type == 'P') {
+		  this.pointP = new PointP(xOrRho,yOrTheta);
+		  this.pointC = new PointC(this.pointP.getX(), this.pointP.getY());
+	  }
+	  else {
+		  throw new IllegalArgumentException();
+	  }
+	  typeCoord = type;
   }
 	
   
@@ -46,25 +53,24 @@ public class PointP implements Point6
  
   public double getX()
   {
-    return (Math.cos(Math.toRadians(Theta)) * Rho);
+	  return pointC.getX();
   }
   
   public double getY()
   {
-    return (Math.sin(Math.toRadians(Theta)) * Rho);
+	  return pointC.getY();
   }
   
   public double getRho()
   {
-	  return Rho;
+	  return pointP.getRho();
   }
   
   public double getTheta()
   {
-    return Theta;
+	  return pointP.getTheta();
   }
   
-
   /**
    * Calculates the distance in between two points using the Pythagorean
    * theorem  (C ^ 2 = A ^ 2 + B ^ 2). Not needed until E2.30.
@@ -73,7 +79,7 @@ public class PointP implements Point6
    * @param pointB The second point.
    * @return The distance between the two points.
    */
-  public double getDistance(PointP pointB)
+  public double getDistance(Point5 pointB)
   {
     // Obtain differences in X and Y, sign is not important as these values
     // will be squared later.
@@ -91,9 +97,15 @@ public class PointP implements Point6
    * @param rotation The number of degrees to rotate the point.
    * @return The rotated image of the original point.
    */
-  public PointP rotatePoint(double rotation)
-  {     
-    return new PointP(getRho(), getTheta() + rotation);
+  public Point5 rotatePoint(double rotation)
+  {
+    double radRotation = Math.toRadians(rotation);
+    double X = getX();
+    double Y = getY();
+        
+    return new Point5('C',
+      (Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y),
+      (Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y));
   }
 
   /**
@@ -103,6 +115,8 @@ public class PointP implements Point6
    */
   public String toString()
   {
-    return "Stored as Polar [" + getRho() + "," + getTheta() + "]\n";
+    return "Stored as " + (typeCoord == 'C' 
+       ? "Cartesian  (" + getX() + "," + getY() + ")"
+       : "Polar [" + getRho() + "," + getTheta() + "]") + "\n";
   }
 }

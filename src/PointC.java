@@ -1,5 +1,6 @@
 
-public class PointC {
+public class PointC implements Point6
+{
 	//Instance variables ************************************************
 	  
 	  /**

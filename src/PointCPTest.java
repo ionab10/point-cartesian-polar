@@ -40,7 +40,7 @@ public class PointCPTest
 
     System.out.println("Calculating coordinates and creating a new point");
     System.out.println(String.format("Timings for %d runs (milliseconds)",N));
-    System.out.println("\t\t\t(PointCP -> PointCP)\t(Point[C|P] -> Point[C|P])\t(Point6 -> Point6)");
+    System.out.println("\t\t\t(PointCP -> PointCP)\t(Point[C|P] -> Point[C|P])\t(Point5 -> Point5)");
     
     startTime = System.currentTimeMillis();
     Polar2PolarCP(N);
@@ -53,7 +53,7 @@ public class PointCPTest
     System.out.print("\t\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Polar2Polar6(N);
+    Polar2Polar5(N);
     endTime = System.currentTimeMillis();
     System.out.println("\t\t\t\t" + (endTime - startTime));
     
@@ -68,7 +68,7 @@ public class PointCPTest
     System.out.print("\t\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Polar2Cartes6(N);
+    Polar2Cartes5(N);
     endTime = System.currentTimeMillis();
     System.out.println("\t\t\t\t" + (endTime - startTime));
     
@@ -83,7 +83,7 @@ public class PointCPTest
     System.out.print("\t\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartes2Polar6(N);
+    Cartes2Polar5(N);
     endTime = System.currentTimeMillis();
     System.out.println("\t\t\t\t" + (endTime - startTime));
     
@@ -98,13 +98,13 @@ public class PointCPTest
     System.out.print("\t\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartes2Cartes6(N);
+    Cartes2Cartes5(N);
     endTime = System.currentTimeMillis();
     System.out.println("\t\t\t\t" + (endTime - startTime));
     
     System.out.println("\n\nCalculating coordinates");
     System.out.println(String.format("Timings for %d runs (milliseconds)",N));
-    System.out.println("\t\t\t(PointCP -> (d,d))\t(Point[C|P] -> (d,d))\t\t(Point6 -> (d,d))");
+    System.out.println("\t\t\t(PointCP -> (d,d))\t(Point[C|P] -> (d,d))\t\t(Point5 -> (d,d))");
     
     startTime = System.currentTimeMillis();
     PolarCP2PolarDD(N);
@@ -117,7 +117,7 @@ public class PointCPTest
     System.out.print("\t\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Polar62PolarDD(N);
+    Polar52PolarDD(N);
     endTime = System.currentTimeMillis();
     System.out.println("\t\t\t\t" + (endTime - startTime));
     
@@ -132,7 +132,7 @@ public class PointCPTest
     System.out.print("\t\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Polar62CartesDD(N);
+    Polar52CartesDD(N);
     endTime = System.currentTimeMillis();
     System.out.println("\t\t\t\t" + (endTime - startTime));
     
@@ -147,7 +147,7 @@ public class PointCPTest
     System.out.print("\t\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartes62PolarDD(N);
+    Cartes52PolarDD(N);
     endTime = System.currentTimeMillis();
     System.out.println("\t\t\t\t" + (endTime - startTime));
     
@@ -162,7 +162,7 @@ public class PointCPTest
     System.out.print("\t\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartes62CartesDD(N);
+    Cartes52CartesDD(N);
     endTime = System.currentTimeMillis();
     System.out.println("\t\t\t\t" + (endTime - startTime));
     
@@ -281,24 +281,24 @@ public class PointCPTest
   /**
 
    */
-  private static void Polar2Polar6(long n)
+  private static void Polar2Polar5(long n)
   {
-	  Point6 point6 = new Point6('P',Math.random(), Math.random() * 360);
+	  Point5 point5 = new Point5('P',Math.random(), Math.random() * 360);
 	  
 	  for (int i=0; i<n; i++) {
-		  point6 = new Point6('P',point6.getRho(), point6.getTheta());
+		  point5 = new Point5('P',point5.getRho(), point5.getTheta());
 	  }
   }
   
   /**
 
    */
-  private static void Polar2Cartes6(long n)
+  private static void Polar2Cartes5(long n)
   {
-	  Point6 point6 = new Point6('P',Math.random(), Math.random() * 360);
+	  Point5 point5 = new Point5('P',Math.random(), Math.random() * 360);
 	  
 	  for (int i=0; i<n; i++) {
-		  point6 = new Point6('C',point6.getX(), point6.getY());
+		  point5 = new Point5('C',point5.getX(), point5.getY());
 	  }
 	  
   }
@@ -307,12 +307,12 @@ public class PointCPTest
   /**
 
    */
-  private static void Cartes2Cartes6(long n)
+  private static void Cartes2Cartes5(long n)
   {
-	  Point6 point6 = new Point6('C',Math.random(), Math.random());
+	  Point5 point5 = new Point5('C',Math.random(), Math.random());
 	  
 	  for (int i=0; i<n; i++) {
-		  point6 = new Point6('C',point6.getX(), point6.getY());
+		  point5 = new Point5('C',point5.getX(), point5.getY());
 	  }
 	  
   }
@@ -320,12 +320,12 @@ public class PointCPTest
   /**
 
    */
-  private static void Cartes2Polar6(long n)
+  private static void Cartes2Polar5(long n)
   {
-	  Point6 point6 = new Point6('C',Math.random(), Math.random());
+	  Point5 point5 = new Point5('C',Math.random(), Math.random());
 	  
 	  for (int i=0; i<n; i++) {
-		  point6 = new Point6('P',point6.getRho(), point6.getTheta());
+		  point5 = new Point5('P',point5.getRho(), point5.getTheta());
 	  }
 	  
   }
@@ -438,24 +438,24 @@ public class PointCPTest
   /**
 
    */
-  private static void Polar62PolarDD(long n)
+  private static void Polar52PolarDD(long n)
   {
-	  Point6 point6 = new Point6('P',Math.random(), Math.random() * 360);
+	  Point5 point5 = new Point5('P',Math.random(), Math.random() * 360);
 	  
 	  for (int i=0; i<n; i++) {
-		  double[] dd = {point6.getRho(), point6.getTheta()};
+		  double[] dd = {point5.getRho(), point5.getTheta()};
 	  }
   }
   
   /**
 
    */
-  private static void Polar62CartesDD(long n)
+  private static void Polar52CartesDD(long n)
   {
-	  Point6 point6 = new Point6('P',Math.random(), Math.random() * 360);
+	  Point5 point5 = new Point5('P',Math.random(), Math.random() * 360);
 	  
 	  for (int i=0; i<n; i++) {
-		  double[] dd = {point6.getX(), point6.getY()};
+		  double[] dd = {point5.getX(), point5.getY()};
 	  }
 	  
   }
@@ -464,12 +464,12 @@ public class PointCPTest
   /**
 
    */
-  private static void Cartes62CartesDD(long n)
+  private static void Cartes52CartesDD(long n)
   {
-	  Point6 point6 = new Point6('C',Math.random(), Math.random());
+	  Point5 point5 = new Point5('C',Math.random(), Math.random());
 	  
 	  for (int i=0; i<n; i++) {
-		  double[] dd = {point6.getX(), point6.getY()};
+		  double[] dd = {point5.getX(), point5.getY()};
 	  }
 	  
   }
@@ -477,12 +477,12 @@ public class PointCPTest
   /**
 
    */
-  private static void Cartes62PolarDD(long n)
+  private static void Cartes52PolarDD(long n)
   {
-	  Point6 point6 = new Point6('C',Math.random(), Math.random());
+	  Point5 point5 = new Point5('C',Math.random(), Math.random());
 	  
 	  for (int i=0; i<n; i++) {
-		  double[] dd = {point6.getRho(), point6.getTheta()};
+		  double[] dd = {point5.getRho(), point5.getTheta()};
 	  }
 	  
   }
