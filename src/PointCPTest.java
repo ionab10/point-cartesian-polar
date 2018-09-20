@@ -40,7 +40,7 @@ public class PointCPTest
 
     System.out.println("Calculating coordinates and creating a new point");
     System.out.println(String.format("Timings for %d runs (milliseconds)",N));
-    System.out.println("\t\t\t(PointCP -> PointCP)\t(Point[C|P] -> Point[C|P])\t(Point5 -> Point5)");
+    System.out.println("\t\t\t(PointCP -> PointCP)\t(Point2 -> Point2)\t(Point3 -> Point3)");
     
     startTime = System.currentTimeMillis();
     Polar2PolarCP(N);
@@ -48,12 +48,12 @@ public class PointCPTest
     System.out.print("Polar to Polar:\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Polar2PolarP(N);
+    Polar2Polar2(N);
     endTime = System.currentTimeMillis();
     System.out.print("\t\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Polar2Polar5(N);
+    Polar2Polar3(N);
     endTime = System.currentTimeMillis();
     System.out.println("\t\t\t\t" + (endTime - startTime));
     
@@ -63,12 +63,12 @@ public class PointCPTest
     System.out.print("Polar to Cartesian:\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Polar2CartesP(N);
+    Polar2Cartes2(N);
     endTime = System.currentTimeMillis();
     System.out.print("\t\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Polar2Cartes5(N);
+    Polar2Cartes3(N);
     endTime = System.currentTimeMillis();
     System.out.println("\t\t\t\t" + (endTime - startTime));
     
@@ -78,12 +78,12 @@ public class PointCPTest
     System.out.print("Cartesian to Polar:\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartes2PolarC(N);
+    Cartes2Polar2(N);
     endTime = System.currentTimeMillis();
     System.out.print("\t\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartes2Polar5(N);
+    Cartes2Polar3(N);
     endTime = System.currentTimeMillis();
     System.out.println("\t\t\t\t" + (endTime - startTime));
     
@@ -93,18 +93,18 @@ public class PointCPTest
     System.out.print("Cartesian to Cartesian:\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartes2CartesC(N);
+    Cartes2Cartes2(N);
     endTime = System.currentTimeMillis();
     System.out.print("\t\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartes2Cartes5(N);
+    Cartes2Cartes3(N);
     endTime = System.currentTimeMillis();
     System.out.println("\t\t\t\t" + (endTime - startTime));
     
     System.out.println("\n\nCalculating coordinates");
     System.out.println(String.format("Timings for %d runs (milliseconds)",N));
-    System.out.println("\t\t\t(PointCP -> (d,d))\t(Point[C|P] -> (d,d))\t\t(Point5 -> (d,d))");
+    System.out.println("\t\t\t(PointCP -> (d,d))\t(Point2 -> (d,d))\t\t(Point3 -> (d,d))");
     
     startTime = System.currentTimeMillis();
     PolarCP2PolarDD(N);
