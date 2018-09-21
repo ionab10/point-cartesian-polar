@@ -12,7 +12,7 @@
  * @author Dr Timothy C. Lethbridge
  * @version July 2000
  */
-public class PointCP3
+public class PointCP3 implements PointCP6
 {
   //Instance variables ************************************************
 
@@ -124,4 +124,25 @@ public class PointCP3
   {
 	  return "Stored as Caresian [" + getX() + "," + getY() + "]\n";
   }
+
+
+@Override
+public void convertStorageToPolar() {
+	// TODO Auto-generated method stub
+	
+}
+
+
+@Override
+public void convertStorageToCartesian() {
+	// TODO Auto-generated method stub
+	
+}
+
+
+@Override
+public double getDistance(PointCP6 pointB) {
+	// TODO Auto-generated method stub
+	return 0;
+}
 }

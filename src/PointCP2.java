@@ -12,7 +12,7 @@
  * @author Dr Timothy C. Lethbridge
  * @version July 2000
  */
-public class PointCP2
+public class PointCP2 implements PointCP6
 {
   //Instance variables ************************************************
 
@@ -104,17 +104,38 @@ public class PointCP2
    * @param rotation The number of degrees to rotate the point.
    * @return The rotated image of the original point.
    */
-  public PointCP rotatePoint(double rotation)
+  public PointCP2 rotatePoint(double rotation)
   {
     double radRotation = Math.toRadians(rotation);
     double X = getX();
     double Y = getY();
         
-    return new PointCP('C',
+    return new PointCP2('C',
       (Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y),
       (Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y));
   }
 
+  @Override
+  public void convertStorageToPolar() {
+  	
+  	
+  }
+
+
+  @Override
+  public void convertStorageToCartesian() {
+  	// TODO Auto-generated method stub
+  	
+  }
+
+
+  @Override
+  public double getDistance(PointCP6 pointB) {
+  	// TODO Auto-generated method stub
+  	return 0;
+  }
+  
+  
   /**
    * Returns information about the coordinates.
    *
@@ -124,4 +145,5 @@ public class PointCP2
   {
 	  return "Stored as Polar [" + getRho() + "," + getTheta() + "]\n";
   }
+
 }
