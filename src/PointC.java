@@ -12,19 +12,19 @@
  * @author Dr Timothy C. Lethbridge
  * @version July 2000
  */
-public class PointCP2
+public class PointC implements PointCP6
 {
   //Instance variables ************************************************
   
   /**
-   * Contains the current value of RHO
+   * Contains the current value of X
    */
-  private double Rho;
+  private double X;
   
   /**
-   * Contains the current value of THETA
+   * Contains the current value of Y
    */
-  private double Theta;
+  private double Y;
 	
   
   //Constructors ******************************************************
@@ -32,15 +32,15 @@ public class PointCP2
   /**
    * Constructs a coordinate object, with a type identifier.
    */
-  public PointCP2(char type, double xOrRho, double yOrTheta)
+  public PointC(char type, double xOrRho, double yOrTheta)
   {
 	  if (type == 'C') {
-		  this.Rho = Math.sqrt(Math.pow(xOrRho, 2) + Math.pow(yOrTheta, 2));
-		  this.Theta = Math.toDegrees(Math.atan2(yOrTheta, xOrRho));
+		  this.X = Math.cos(Math.toRadians(yOrTheta)) * xOrRho;
+		  this.Y = Math.sin(Math.toRadians(yOrTheta)) * xOrRho;
 	  }
 	  else if (type == 'P') {
-		  this.Rho = xOrRho;
-		  this.Theta = yOrTheta;
+		  this.X = xOrRho;
+		  this.Y = yOrTheta;
 	  }
 	  else
 		  throw new IllegalArgumentException();
@@ -52,42 +52,24 @@ public class PointCP2
  
   public double getX()
   {
-    return (Math.cos(Math.toRadians(Theta)) * Rho);
+    return X;
   }
   
   public double getY()
   {
-    return (Math.sin(Math.toRadians(Theta)) * Rho);
+    return Y;
   }
   
   public double getRho()
   {
-    return Rho;
+    return (Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2)));
   }
   
   public double getTheta()
   {
-    return Theta;
+    return Math.toDegrees(Math.atan2(Y, X));
   }
   
-
-  /**
-   * Calculates the distance in between two points using the Pythagorean
-   * theorem  (C ^ 2 = A ^ 2 + B ^ 2). Not needed until E2.30.
-   *
-   * @param pointA The first point.
-   * @param pointB The second point.
-   * @return The distance between the two points.
-   */
-  public double getDistance(PointCP2 pointB)
-  {
-    // Obtain differences in X and Y, sign is not important as these values
-    // will be squared later.
-    double deltaX = getX() - pointB.getX();
-    double deltaY = getY() - pointB.getY();
-    
-    return Math.sqrt((Math.pow(deltaX, 2) + Math.pow(deltaY, 2)));
-  }
 
   /**
    * Rotates the specified point by the specified number of degrees.
@@ -97,29 +79,17 @@ public class PointCP2
    * @param rotation The number of degrees to rotate the point.
    * @return The rotated image of the original point.
    */
-  public PointCP2 rotatePoint(double rotation)
+  public PointCP6 rotatePoint(double rotation)
   {
     double radRotation = Math.toRadians(rotation);
     double X = getX();
     double Y = getY();
         
-    return new PointCP2('C',
+    return new PointC('C',
       (Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y),
       (Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y));
   }
 
-  public PointCP2 convertStorageToPolar() {
-  	return new PointCP2('P', getRho(), getTheta());
-  	
-  }
-
-
-  public PointCP3 convertStorageToCartesian() {
-	  return new PointCP3('P', getRho(), getTheta());
-  	
-  }
-  
-  
   /**
    * Returns information about the coordinates.
    *
@@ -127,7 +97,22 @@ public class PointCP2
    */
   public String toString()
   {
-	  return "Stored as Polar [" + getRho() + "," + getTheta() + "]\n";
+	  return "Stored as Caresian [" + getX() + "," + getY() + "]\n";
   }
+
+
+@Override
+public PointP convertStorageToPolar() {
+	return new PointP('C', getX(), getY());
+	
+}
+
+
+@Override
+public PointC convertStorageToCartesian() {
+	return new PointC('C', getX(), getY());
+	
+}
+
 
 }

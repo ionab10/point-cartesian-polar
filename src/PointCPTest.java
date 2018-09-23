@@ -36,387 +36,245 @@ public class PointCPTest
      
 	long startTime;
 	long endTime;
-    long N = 100000000;
+    long N = 1000000000;
+    double rotation = Math.random() * 360;
+    
+	PointCP pointCP_P = new PointCP('P',Math.random(), Math.random() * 360);
+	PointCP pointCP_C = new PointCP('C',Math.random(), Math.random());
+	PointCP2 pointCP2 = new PointCP2('P',Math.random(), Math.random() * 360);
+	PointCP3 pointCP3 = new PointCP3('C',Math.random(), Math.random());
+	PointCP6 pointCP6P = new PointP('P',Math.random(), Math.random() * 360);
+	PointCP6 pointCP6C = new PointC('C',Math.random(), Math.random());
+	
+	PointCP pointCP_PB = new PointCP('P',Math.random(), Math.random() * 360);
+	PointCP pointCP_CB = new PointCP('C',Math.random(), Math.random());
+	PointCP2 pointCP2B = new PointCP2('P',Math.random(), Math.random() * 360);
+	PointCP3 pointCP3B = new PointCP3('C',Math.random(), Math.random());
+	PointCP6 pointCP6PB = new PointP('P',Math.random(), Math.random() * 360);
+	PointCP6 pointCP6CB = new PointC('C',Math.random(), Math.random());
     
     System.out.println("Calculating coordinates");
     System.out.println(String.format("Timings for %d runs (milliseconds)",N));
-    System.out.println("\t\t\t\t(PointCP -> (d,d))\t(Point2 -> (d,d))\t(Point3 -> (d,d))\t(Point6(2) -> (d,d))\t(Point6(3) -> (d,d))");
+    System.out.println("\t\t\t\tPointCP (P)\tPointCP (C)\tPointCP2\t\tPointCP3\t\tPoint6 (PointP)\t\tPoint6 (PointC)");
     
     startTime = System.currentTimeMillis();
-    Polar2Polar1(N);
+    for (int i=0; i<N; i++) { pointCP_P.getRho();  pointCP_P.getTheta();};
     endTime = System.currentTimeMillis();
-    System.out.print("Polar to Polar:\t\t\t" + (endTime - startTime));
+    System.out.print("getRho();getTheta();:\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Polar2Polar2(N);
+    for (int i=0; i<N; i++) { pointCP_C.getRho();  pointCP_C.getTheta();};
     endTime = System.currentTimeMillis();
-    System.out.print("\t\t\t" + (endTime - startTime));
+    System.out.print("\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Polar2Polar3(N);
+    for (int i=0; i<N; i++) { pointCP2.getRho();  pointCP2.getTheta();};
     endTime = System.currentTimeMillis();
-    System.out.print("\t\t\t" + (endTime - startTime));
+    System.out.print("\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Polar2Polar6(N);
+    for (int i=0; i<N; i++) { pointCP3.getRho();  pointCP3.getTheta();};
     endTime = System.currentTimeMillis();
-    System.out.print("\t\t\t" + (endTime - startTime));
+    System.out.print("\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Polar2Polar6_3(N);
+    for (int i=0; i<N; i++) { pointCP6P.getRho();  pointCP6P.getTheta();};
     endTime = System.currentTimeMillis();
-    System.out.println("\t\t\t" + (endTime - startTime));
-    
-    
-    startTime = System.currentTimeMillis();
-    Polar2Cartesian1(N);
-    endTime = System.currentTimeMillis();
-    System.out.print("Polar to Cartesian:\t\t" + (endTime - startTime));
+    System.out.print("\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Polar2Cartesian2(N);
-    endTime = System.currentTimeMillis();
-    System.out.print("\t\t\t" + (endTime - startTime));
-    
-    startTime = System.currentTimeMillis();
-    Polar2Cartesian3(N);
-    endTime = System.currentTimeMillis();
-    System.out.print("\t\t\t" + (endTime - startTime));
-    
-    startTime = System.currentTimeMillis();
-    Polar2Cartesian6(N);
-    endTime = System.currentTimeMillis();
-    System.out.print("\t\t\t" + (endTime - startTime));
-    
-    startTime = System.currentTimeMillis();
-    Polar2Cartesian6_3(N);
+    for (int i=0; i<N; i++) { pointCP6C.getRho();  pointCP6C.getTheta();};
     endTime = System.currentTimeMillis();
     System.out.println("\t\t\t" + (endTime - startTime));
     
     
     startTime = System.currentTimeMillis();
-    Cartesian2Polar1(N);
+    for (int i=0; i<N; i++) { pointCP_P.getX();  pointCP_P.getY();};
     endTime = System.currentTimeMillis();
-    System.out.print("Cartesian to Polar:\t\t" + (endTime - startTime));
+    System.out.print("getX();getY();:\t\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartesian2Polar2(N);
+    for (int i=0; i<N; i++) { pointCP_C.getX();  pointCP_C.getY();};
     endTime = System.currentTimeMillis();
-    System.out.print("\t\t\t" + (endTime - startTime));
+    System.out.print("\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartesian2Polar3(N);
+    for (int i=0; i<N; i++) { pointCP2.getX();  pointCP2.getY();};
     endTime = System.currentTimeMillis();
-    System.out.print("\t\t\t" + (endTime - startTime));
+    System.out.print("\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartesian2Polar6(N);
+    for (int i=0; i<N; i++) { pointCP3.getX();  pointCP3.getY();};
     endTime = System.currentTimeMillis();
-    System.out.print("\t\t\t" + (endTime - startTime));
+    System.out.print("\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartesian2Polar6_3(N);
+    for (int i=0; i<N; i++) { pointCP6P.getX();  pointCP6P.getY();};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP6C.getX();  pointCP6C.getY();};
     endTime = System.currentTimeMillis();
     System.out.println("\t\t\t" + (endTime - startTime));
     
     
     startTime = System.currentTimeMillis();
-    Cartesian2Cartesian1(N);
+    for (int i=0; i<N; i++) { pointCP_P.convertStorageToPolar();};
     endTime = System.currentTimeMillis();
-    System.out.print("Cartesian to Cartesian:\t\t" + (endTime - startTime));
+    System.out.print("convertStorageToPolar():\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartesian2Cartesian2(N);
+    for (int i=0; i<N; i++) { pointCP_C.convertStorageToPolar();};
     endTime = System.currentTimeMillis();
-    System.out.print("\t\t\t" + (endTime - startTime));
+    System.out.print("\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartesian2Cartesian3(N);
+    for (int i=0; i<N; i++) { pointCP2.convertStorageToPolar();};
     endTime = System.currentTimeMillis();
-    System.out.print("\t\t\t" + (endTime - startTime));
+    System.out.print("\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartesian2Cartesian6(N);
+    for (int i=0; i<N; i++) { pointCP3.convertStorageToPolar();};
     endTime = System.currentTimeMillis();
-    System.out.print("\t\t\t" + (endTime - startTime));
+    System.out.print("\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
-    Cartesian2Cartesian6_3(N);
+    for (int i=0; i<N; i++) { pointCP6P.convertStorageToPolar();};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP6C.convertStorageToPolar();};
     endTime = System.currentTimeMillis();
     System.out.println("\t\t\t" + (endTime - startTime));
-   
-
     
-    System.out.println("\n");
-    //convertACoordinate(args);
-
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP_P.convertStorageToCartesian();};
+    endTime = System.currentTimeMillis();
+    System.out.print("convertStorageToCartesian():\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP_C.convertStorageToCartesian();};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP2.convertStorageToCartesian();};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP3.convertStorageToCartesian();};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP6P.convertStorageToCartesian();};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP6C.convertStorageToCartesian();};
+    endTime = System.currentTimeMillis();
+    System.out.println("\t\t\t" + (endTime - startTime));
+    
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP_P.rotatePoint(rotation);};
+    endTime = System.currentTimeMillis();
+    System.out.print("rotatePoint(rotation):\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP_C.rotatePoint(rotation);};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP2.rotatePoint(rotation);};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP3.rotatePoint(rotation);};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP6P.rotatePoint(rotation);};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP6C.rotatePoint(rotation);};
+    endTime = System.currentTimeMillis();
+    System.out.println("\t\t\t" + (endTime - startTime));
+    
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP_P.getDistance(pointCP_PB);};
+    endTime = System.currentTimeMillis();
+    System.out.print("getDistance(rotation):\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP_C.getDistance(pointCP_CB);};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP2.getDistance(pointCP2B);};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP3.getDistance(pointCP3B);};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP6P.getDistance(pointCP6PB);};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP6C.getDistance(pointCP6CB);};
+    endTime = System.currentTimeMillis();
+    System.out.println("\t\t\t" + (endTime - startTime));
+    
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP_P.toString();};
+    endTime = System.currentTimeMillis();
+    System.out.print("toString():\t\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP_C.toString();};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP2.toString();};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP3.toString();};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP6P.toString();};
+    endTime = System.currentTimeMillis();
+    System.out.print("\t\t" + (endTime - startTime));
+    
+    startTime = System.currentTimeMillis();
+    for (int i=0; i<N; i++) { pointCP6C.toString();};
+    endTime = System.currentTimeMillis();
+    System.out.println("\t\t\t" + (endTime - startTime));
+    
   }
-  
-  
-  /**
-
-   */
-  private static void Polar2Polar1(long n)
-  {
-	  PointCP pointCP = new PointCP('P',Math.random(), Math.random() * 360);
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {pointCP.getRho(), pointCP.getTheta()};
-	  }
-	  
-  }
-  
-  /**
-
-   */
-  private static void Polar2Cartesian1(long n)
-  {
-	  PointCP pointCP = new PointCP('P',Math.random(), Math.random() * 360);
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {pointCP.getX(), pointCP.getY()};
-	  }
-	  
-  }
-  
-  /**
-
-   */
-  private static void Cartesian2Cartesian1(long n)
-  {
-	  PointCP pointCP = new PointCP('C', Math.random(), Math.random());
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {pointCP.getX(), pointCP.getY()};
-	  }
-	  
-  }
-  
-  /**
-
-   */
-  private static void Cartesian2Polar1(long n)
-  {
-	  PointCP pointCP = new PointCP('C',Math.random(), Math.random());
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {pointCP.getRho(), pointCP.getTheta()};
-	  }
-	  
-  }
-  
-  /**
-
-   */
-  private static void Polar2Polar2(long n)
-  {
-	  PointCP2 point = new PointCP2('P', Math.random(), Math.random() * 360);
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getRho(), point.getTheta()};
-	  }
-	  
-  }
-  
-  /**
-
-   */
-  private static void Polar2Cartesian2(long n)
-  {
-	  PointCP2 point = new PointCP2('P', Math.random(), Math.random() * 360);
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getX(), point.getY()};
-	  }
-	  
-  }
-  
-  
-  /**
-
-   */
-  private static void Cartesian2Cartesian2(long n)
-  {
-	  PointCP2 point = new PointCP2('C', Math.random(), Math.random());
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getX(), point.getY()};
-	  }
-	  
-  }
-  
-  /**
-
-   */
-  private static void Cartesian2Polar2(long n)
-  {
-	  PointCP2 point = new PointCP2('C', Math.random(), Math.random());
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getRho(), point.getTheta()};
-	  }
-	  
-  }
-  
-
-  /**
-
-   */
-  private static void Polar2Polar3(long n)
-  {
-	  PointCP3 point = new PointCP3('P', Math.random(), Math.random() * 360);
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getRho(), point.getTheta()};
-	  }
-	  
-  }
-  
-  /**
-
-   */
-  private static void Polar2Cartesian3(long n)
-  {
-	  PointCP3 point = new PointCP3('P', Math.random(), Math.random() * 360);
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getX(), point.getY()};
-	  }
-	  
-  }
-  
-  
-  /**
-
-   */
-  private static void Cartesian2Cartesian3(long n)
-  {
-	  PointCP3 point = new PointCP3('C', Math.random(), Math.random());
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getX(), point.getY()};
-	  }
-	  
-  }
-  
-  /**
-
-   */
-  private static void Cartesian2Polar3(long n)
-  {
-	  PointCP3 point = new PointCP3('C', Math.random(), Math.random());
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getRho(), point.getTheta()};
-	  }
-	  
-  }
-  
-  /**
-
-   */
-  private static void Polar2Polar6(long n)
-  {
-	  PointCP6 point = new PointCP2('P', Math.random(), Math.random() * 360);
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getRho(), point.getTheta()};
-	  }
-	  
-  }
-  
-  /**
-
-   */
-  private static void Polar2Cartesian6(long n)
-  {
-	  PointCP6 point = new PointCP2('P', Math.random(), Math.random() * 360);
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getX(), point.getY()};
-	  }
-	  
-  }
-  
-  
-  /**
-
-   */
-  private static void Cartesian2Cartesian6(long n)
-  {
-	  PointCP6 point = new PointCP2('C', Math.random(), Math.random());
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getX(), point.getY()};
-	  }
-	  
-  }
-  
-  /**
-
-   */
-  private static void Cartesian2Polar6(long n)
-  {
-	  PointCP6 point = new PointCP2('C', Math.random(), Math.random());
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getRho(), point.getTheta()};
-	  }
-	  
-  }
-  
-  /**
-
-   */
-  private static void Polar2Polar6_3(long n)
-  {
-	  PointCP6 point = new PointCP3('P', Math.random(), Math.random() * 360);
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getRho(), point.getTheta()};
-	  }
-	  
-  }
-  
-  /**
-
-   */
-  private static void Polar2Cartesian6_3(long n)
-  {
-	  PointCP6 point = new PointCP3('P', Math.random(), Math.random() * 360);
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getX(), point.getY()};
-	  }
-	  
-  }
-  
-  
-  /**
-
-   */
-  private static void Cartesian2Cartesian6_3(long n)
-  {
-	  PointCP6 point = new PointCP3('C', Math.random(), Math.random());
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getX(), point.getY()};
-	  }
-	  
-  }
-  
-  /**
-
-   */
-  private static void Cartesian2Polar6_3(long n)
-  {
-	  PointCP6 point = new PointCP3('C', Math.random(), Math.random());
-	  
-	  for (int i=0; i<n; i++) {
-		  double[] dd = {point.getRho(), point.getTheta()};
-	  }
-	  
-  }
+    
   
   /**
 

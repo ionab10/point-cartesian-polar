@@ -12,7 +12,7 @@
  * @author Dr Timothy C. Lethbridge
  * @version July 2000
  */
-public class PointCP2
+public class PointP implements PointCP6
 {
   //Instance variables ************************************************
   
@@ -32,7 +32,7 @@ public class PointCP2
   /**
    * Constructs a coordinate object, with a type identifier.
    */
-  public PointCP2(char type, double xOrRho, double yOrTheta)
+  public PointP(char type, double xOrRho, double yOrTheta)
   {
 	  if (type == 'C') {
 		  this.Rho = Math.sqrt(Math.pow(xOrRho, 2) + Math.pow(yOrTheta, 2));
@@ -72,24 +72,6 @@ public class PointCP2
   
 
   /**
-   * Calculates the distance in between two points using the Pythagorean
-   * theorem  (C ^ 2 = A ^ 2 + B ^ 2). Not needed until E2.30.
-   *
-   * @param pointA The first point.
-   * @param pointB The second point.
-   * @return The distance between the two points.
-   */
-  public double getDistance(PointCP2 pointB)
-  {
-    // Obtain differences in X and Y, sign is not important as these values
-    // will be squared later.
-    double deltaX = getX() - pointB.getX();
-    double deltaY = getY() - pointB.getY();
-    
-    return Math.sqrt((Math.pow(deltaX, 2) + Math.pow(deltaY, 2)));
-  }
-
-  /**
    * Rotates the specified point by the specified number of degrees.
    * Not required until E2.30
    *
@@ -97,25 +79,27 @@ public class PointCP2
    * @param rotation The number of degrees to rotate the point.
    * @return The rotated image of the original point.
    */
-  public PointCP2 rotatePoint(double rotation)
+  public PointCP6 rotatePoint(double rotation)
   {
     double radRotation = Math.toRadians(rotation);
     double X = getX();
     double Y = getY();
         
-    return new PointCP2('C',
+    return new PointP('C',
       (Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y),
       (Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y));
   }
 
-  public PointCP2 convertStorageToPolar() {
-  	return new PointCP2('P', getRho(), getTheta());
+  @Override
+  public PointP convertStorageToPolar() {
+  	return new PointP('P', getRho(), getTheta());
   	
   }
 
 
-  public PointCP3 convertStorageToCartesian() {
-	  return new PointCP3('P', getRho(), getTheta());
+  @Override
+  public PointC convertStorageToCartesian() {
+	  return new PointC('P', getRho(), getTheta());
   	
   }
   

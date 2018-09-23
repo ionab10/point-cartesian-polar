@@ -12,15 +12,9 @@
  * @author Dr Timothy C. Lethbridge
  * @version July 2000
  */
-public class PointCP3 implements PointCP6
+public class PointCP3
 {
   //Instance variables ************************************************
-
-  /**
-   * Contains C(artesian) or P(olar) to identify the type of
-   * coordinates that are being dealt with.
-   */
-  private char typeCoord;
   
   /**
    * Contains the current value of X
@@ -50,7 +44,6 @@ public class PointCP3 implements PointCP6
 	  }
 	  else
 		  throw new IllegalArgumentException();
-    	typeCoord = type;
   }
 	
   
@@ -104,13 +97,13 @@ public class PointCP3 implements PointCP6
    * @param rotation The number of degrees to rotate the point.
    * @return The rotated image of the original point.
    */
-  public PointCP rotatePoint(double rotation)
+  public PointCP3 rotatePoint(double rotation)
   {
     double radRotation = Math.toRadians(rotation);
     double X = getX();
     double Y = getY();
         
-    return new PointCP('C',
+    return new PointCP3('C',
       (Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y),
       (Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y));
   }
@@ -126,23 +119,15 @@ public class PointCP3 implements PointCP6
   }
 
 
-@Override
-public void convertStorageToPolar() {
-	// TODO Auto-generated method stub
+public PointCP2 convertStorageToPolar() {
+	return new PointCP2('C', getX(), getY());
 	
 }
 
 
-@Override
-public void convertStorageToCartesian() {
-	// TODO Auto-generated method stub
+public PointCP3 convertStorageToCartesian() {
+	return new PointCP3('C', getX(), getY());
 	
 }
 
-
-@Override
-public double getDistance(PointCP6 pointB) {
-	// TODO Auto-generated method stub
-	return 0;
-}
 }
