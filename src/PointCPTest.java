@@ -36,7 +36,7 @@ public class PointCPTest
      
 	long startTime;
 	long endTime;
-    long N = 1000000000;
+    long N = 10000000;
     double rotation = Math.random() * 360;
     
 	PointCP pointCP_P = new PointCP('P',Math.random(), Math.random() * 360);
@@ -53,7 +53,6 @@ public class PointCPTest
 	PointCP6 pointCP6PB = new PointP('P',Math.random(), Math.random() * 360);
 	PointCP6 pointCP6CB = new PointC('C',Math.random(), Math.random());
     
-    System.out.println("Calculating coordinates");
     System.out.println(String.format("Timings for %d runs (milliseconds)",N));
     System.out.println("\t\t\t\tPointCP (P)\tPointCP (C)\tPointCP2\t\tPointCP3\t\tPoint6 (PointP)\t\tPoint6 (PointC)");
     
