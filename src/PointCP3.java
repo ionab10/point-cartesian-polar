@@ -34,11 +34,11 @@ public class PointCP3
    */
   public PointCP3(char type, double xOrRho, double yOrTheta)
   {
-	  if (type == 'C') {
+	  if (type == 'P') {
 		  this.X = Math.cos(Math.toRadians(yOrTheta)) * xOrRho;
 		  this.Y = Math.sin(Math.toRadians(yOrTheta)) * xOrRho;
 	  }
-	  else if (type == 'P') {
+	  else if (type == 'C') {
 		  this.X = xOrRho;
 		  this.Y = yOrTheta;
 	  }

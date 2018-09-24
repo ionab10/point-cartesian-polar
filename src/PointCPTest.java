@@ -36,7 +36,7 @@ public class PointCPTest
      
 	long startTime;
 	long endTime;
-    long N = 10000000;
+    long N = 1000000000;
     double rotation = Math.random() * 360;
     
 	PointCP pointCP_P = new PointCP('P',Math.random(), Math.random() * 360);
@@ -214,7 +214,7 @@ public class PointCPTest
     startTime = System.currentTimeMillis();
     for (int i=0; i<N; i++) { pointCP_P.getDistance(pointCP_PB);};
     endTime = System.currentTimeMillis();
-    System.out.print("getDistance(rotation):\t\t" + (endTime - startTime));
+    System.out.print("getDistance(pointB):\t\t" + (endTime - startTime));
     
     startTime = System.currentTimeMillis();
     for (int i=0; i<N; i++) { pointCP_C.getDistance(pointCP_CB);};
